@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.html import format_html
 
 
-# Create your models here.
 class WineItem(models.Model):
     LABEL_TYPE_CHOICES = [
         ('TR', 'Traditional'),
@@ -65,3 +64,29 @@ class WineItem(models.Model):
         return format_html(
             '<img width="100" src="%s" />' % self.bottle_image_url
         )
+
+class SurveyResponse(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    email = models.EmailField()
+
+class SurveyQuestionGroup(models.Model):
+    slug = models.CharField(max_length=120)
+    text = models.CharField(max_length=240)
+    
+class SurveyQuestion(models.Model):
+    slug = models.CharField(max_length=120)
+    description = models.CharField(max_length=240)
+    survey_question_group = models.ForeignKey(SurveyQuestionGroup, on_delete=models.CASCADE)
+
+class SurveyQuestionItemResponse(models.Model):
+    survey_response = models.ForeignKey(SurveyResponse, on_delete=models.CASCADE)
+    survey_question_item = models.ForeignKey(SurveyQuestion, null=True, on_delete=models.SET_NULL)
+    answer = models.CharField(max_length=120)
+
+class SurveyABTestInstance(models.Model):
+    survey_response = models.ForeignKey(SurveyResponse, null=True, on_delete=models.SET_NULL)
+    item_A = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
+    item_B = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
+    winner = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
+    loser = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
