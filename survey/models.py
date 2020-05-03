@@ -58,31 +58,35 @@ class WineItem(models.Model):
     winc_product_id = models.CharField(max_length=120, blank=True, null=True)
     winc_product_code = models.CharField(max_length=120, blank=True, null=True)
 
-    
-
     def bottle_image_thumbnail_html(self):
         return format_html(
             '<img width="100" src="%s" />' % self.bottle_image_url
         )
+    
+    def __str__(self):
+        return "%s" % self.name
 
 class SurveyResponse(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    email = models.EmailField()
+    email = models.EmailField(primary_key=True)
 
-class SurveyQuestionGroup(models.Model):
-    slug = models.CharField(max_length=120)
-    text = models.CharField(max_length=240)
-    
+    def __str__(self):
+        return "%s %s" % (self.last_updated, self.email)
+
 class SurveyQuestion(models.Model):
-    slug = models.CharField(max_length=120)
-    description = models.CharField(max_length=240)
-    survey_question_group = models.ForeignKey(SurveyQuestionGroup, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=120, primary_key=True)
 
-class SurveyQuestionItemResponse(models.Model):
+    def __str__(self):
+        return "%s" % self.slug
+
+class SurveyQuestionResponse(models.Model):
     survey_response = models.ForeignKey(SurveyResponse, on_delete=models.CASCADE)
-    survey_question_item = models.ForeignKey(SurveyQuestion, null=True, on_delete=models.SET_NULL)
+    survey_question = models.ForeignKey(SurveyQuestion, null=True, on_delete=models.SET_NULL)
     answer = models.CharField(max_length=120)
+
+    def __str__(self):
+        return "%s %s %s" % (self.survey_response, self.survey_question, self.answer)
 
 class SurveyABTestInstance(models.Model):
     survey_response = models.ForeignKey(SurveyResponse, null=True, on_delete=models.SET_NULL)
@@ -90,3 +94,6 @@ class SurveyABTestInstance(models.Model):
     item_B = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
     winner = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
     loser = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
+
+    def __str__(self):
+        return "%s %s beat %s" % (self.survey_response, self.winner, self.loser)

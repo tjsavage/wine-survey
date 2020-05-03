@@ -20,5 +20,7 @@ from survey import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('api/submit_survey/', views.api_submit_survey, name='api_submit_survey'),
+    path('csv/question_responses/', views.csv_question_responses, name='csv_question_responses'),
     path('admin/', admin.site.urls),
 ]
