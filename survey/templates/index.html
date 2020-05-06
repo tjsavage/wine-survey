@@ -156,7 +156,7 @@
                 abData['winner'] = abData['item_B_key'];
             }
             abData['email'] = email;
-            console.log(abData);
+            $('#wine-cards').hide();
             $.post('/api/submit_ab_results/', abData, loadNewABTest)
         }
 
