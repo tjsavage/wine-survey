@@ -119,7 +119,7 @@
             }
 
             $('#loading').show();
-            $('#abContainer').hide();
+            $('#wine-cards').hide();
             $.getJSON('/api/get_ab_test/',
                 function(data) {
                     abData['item_A_key'] = data['item_A']['item_key'];
@@ -141,7 +141,7 @@
                     );
 
                     $('#loading').hide();
-                    $('#abContainer').show();
+                    $('#wine-cards').show();
                 }
             );
 
