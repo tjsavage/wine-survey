@@ -1,4 +1,8 @@
+import random
+
 from django.db import models
+from django.db.models import Max
+
 
 from django.utils.html import format_html
 
@@ -21,7 +25,6 @@ class WineItem(models.Model):
         ('S', 'Sparkling'),
         ('Ro', 'Rose'),
     ]
-
 
     item_key = models.CharField(primary_key=True, max_length=120)
     name = models.CharField(max_length=240)
@@ -89,11 +92,20 @@ class SurveyQuestionResponse(models.Model):
         return "%s %s %s" % (self.survey_response, self.survey_question, self.answer)
 
 class SurveyABTestInstance(models.Model):
-    survey_response = models.ForeignKey(SurveyResponse, null=True, on_delete=models.SET_NULL)
-    item_A = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
-    item_B = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
-    winner = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
-    loser = models.ForeignKey(WineItem, null=True, on_delete=models.SET_NULL, related_name='+')
+    survey_response = models.ForeignKey(SurveyResponse, null=True, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True, null=True)
+    item_A = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')
+    item_B = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')
+    winner = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')
+    loser = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')
 
     def __str__(self):
         return "%s %s beat %s" % (self.survey_response, self.winner, self.loser)
+
+def get_random_wine_item(not_wine_item_key=None):
+    items = WineItem.objects.all()
+
+    while True:
+        random_item = random.choice(items)
+        if random_item.item_key != not_wine_item_key:
+            return random_item

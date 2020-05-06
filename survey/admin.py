@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import WineItem, SurveyResponse, SurveyQuestion, SurveyQuestionResponse
+from .models import WineItem, SurveyResponse, SurveyQuestion, SurveyQuestionResponse, SurveyABTestInstance
 
 # Register your models here.
 class WineItemAdmin(admin.ModelAdmin):
@@ -13,3 +13,4 @@ admin.site.register(WineItem, WineItemAdmin)
 admin.site.register(SurveyResponse)
 admin.site.register(SurveyQuestion)
 admin.site.register(SurveyQuestionResponse)
+admin.site.register(SurveyABTestInstance)
