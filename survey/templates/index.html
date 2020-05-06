@@ -59,10 +59,15 @@
                 <h3>Which of the following two wines would you be more likely to buy?</h3>
                 <h6>Keep going until you're bored - the more you click, the more helpful for us!</h6>
             </div>
-            <div class="row">
+            <div class="row" id="wine-cards">
                 <div class="col-md" id="wine-item-A">
                 </div>
                 <div class="col-md wine-b" id="wine-item-B">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div id="loading" class="spinner-border" role="status" style="display: none;">
+                    <span class="sr-only">Loading next...</span>
                 </div>
             </div>
         </div>
@@ -113,9 +118,10 @@
                 'email': email
             }
 
+            $('#loading').show();
+            $('#abContainer').hide();
             $.getJSON('/api/get_ab_test/',
                 function(data) {
-                    console.log(data)
                     abData['item_A_key'] = data['item_A']['item_key'];
                     abData['item_B_key'] = data['item_B']['item_key'];
 
@@ -133,6 +139,9 @@
                             $(this).removeClass('shadow-lg');
                         }
                     );
+
+                    $('#loading').hide();
+                    $('#abContainer').show();
                 }
             );
 
