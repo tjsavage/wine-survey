@@ -23,6 +23,11 @@ class WincSpider(scrapy.Spider):
         item.populate_from_product_json(product_json)
         item.populate_from_search_result_json(search_result_json)
 
+        if not item.is_image_url_valid():
+            print("Invalid image url: %s" % item['bottle_image_url'])
+
+            return None
+
         item.save()
 
         return item

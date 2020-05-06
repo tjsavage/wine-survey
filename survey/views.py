@@ -85,3 +85,8 @@ def csv_question_responses(request):
     qs = SurveyQuestionResponse.objects.all()
 
     return render_to_csv_response(qs)
+
+def csv_wine_items(request):
+    qs = WineItem.objects.all()
+
+    return render_to_csv_response(qs)

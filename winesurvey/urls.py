@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/get_ab_test/', views.api_get_ab_test, name='api_get_ab_test'),
     path('api/submit_ab_results/', views.api_submit_ab_results, name='api_submit_ab_results'),
     path('csv/question_responses/', views.csv_question_responses, name='csv_question_responses'),
+    path('csv/wine_items/', views.csv_wine_items, name='csv_wine_items'),
     path('admin/', admin.site.urls),
 ]
