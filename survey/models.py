@@ -93,7 +93,7 @@ class SurveyQuestionResponse(models.Model):
 
 class SurveyABTestInstance(models.Model):
     survey_response = models.ForeignKey(SurveyResponse, null=True, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
     item_A = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')
     item_B = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')
     winner = models.ForeignKey(WineItem, null=False, on_delete=models.CASCADE, related_name='+')

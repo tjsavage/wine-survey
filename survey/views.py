@@ -67,11 +67,16 @@ def api_submit_ab_results(request):
 def api_get_ab_test(request):
     last = WineItem.objects.count() - 1
     index1 = random.randint(0, last)
-    index2 = random.randint(0, last - 1)
-    if index2 == index1: index2 = last
 
     item_A = WineItem.objects.all()[index1]
-    item_B = WineItem.objects.all()[index2]
+    item_B = None
+
+    while not item_B or item_B.wine_type != item_A.wine_type:
+        index2 = random.randint(0, last)
+        if index2 == index1:
+            continue
+
+        item_B = WineItem.objects.all()[index2]
 
     return JsonResponse(
         {
