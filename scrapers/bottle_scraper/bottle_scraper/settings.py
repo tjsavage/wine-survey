@@ -9,10 +9,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'winc'
+BOT_NAME = 'bottle_scraper'
 
-SPIDER_MODULES = ['winc.spiders']
-NEWSPIDER_MODULE = 'winc.spiders'
+SPIDER_MODULES = ['bottle_scraper.spiders']
+NEWSPIDER_MODULE = 'bottle_scraper.spiders'
 
 # Add Django project to path
 import sys

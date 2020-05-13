@@ -2,11 +2,12 @@ import scrapy
 import json
 
 from ..items import WincWineItem
+from ..util import is_image_url_valid
 
 class WincSpider(scrapy.Spider):
     name = "winc"
     start_urls = [
-        'https://www.winc.com/api/search?index=winesearch-production-4&top=1000'
+        'https://www.winc.com/api/search?index=winesearch-production-4&top=100'
     ]
     
     def parse(self, response):
@@ -23,7 +24,7 @@ class WincSpider(scrapy.Spider):
         item.populate_from_product_json(product_json)
         item.populate_from_search_result_json(search_result_json)
 
-        if not item.is_image_url_valid():
+        if not is_image_url_valid(item['bottle_image_url']):
             print("Invalid image url: %s" % item['bottle_image_url'])
 
             return None

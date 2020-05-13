@@ -10,6 +10,9 @@ from scrapy_djangoitem import DjangoItem
 
 from survey.models import WineItem
 
+class WineWineItem(DjangoItem):
+    django_model = WineItem
+    
 
 class WincWineItem(DjangoItem):
     django_model = WineItem
@@ -76,23 +79,3 @@ class WincWineItem(DjangoItem):
             self['wine_type'] = 'R'
         
         self['item_key'] = 'winc%s' % self['product_id']
-    
-    def is_image_url_valid(self):
-        image_url = self['bottle_image_url']
-
-        try:
-            req = urllib.request.Request(image_url)
-            with urllib.request.urlopen(req) as resp:
-                if not resp.code in range(200, 209):
-                    print("code %d" % resp.code)
-                    return False
-                if int(resp.headers.get('content-length')) < 1000:
-                    print("short content length")
-                    return False
-            
-            mimetype,encoding = mimetypes.guess_type(image_url)
-            return (mimetype and mimetype.startswith('image'))
-        except Exception as e:
-            print("Exception")
-            print(e)
-            return False

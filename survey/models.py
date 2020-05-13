@@ -11,7 +11,6 @@ class WineItem(models.Model):
     LABEL_TYPE_CHOICES = [
         ('TR', 'Traditional'),
         ('WH', 'Whimsical'),
-        ('CO', 'Colorful'),
         ('MO', 'Modern'),
         ('MI', 'Minimalist'),
     ]
@@ -60,10 +59,11 @@ class WineItem(models.Model):
     tasting_notes = models.TextField(blank=True, null=True)
     winc_product_id = models.CharField(max_length=120, blank=True, null=True)
     winc_product_code = models.CharField(max_length=120, blank=True, null=True)
+    wine_product_id = models.CharField(max_length=120, blank=True, null=True)
 
     def bottle_image_thumbnail_html(self):
         return format_html(
-            '<img width="100" src="%s" />' % self.bottle_image_url
+            '<img width="200" src="%s" />' % self.bottle_image_url
         )
     
     def __str__(self):

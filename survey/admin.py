@@ -5,8 +5,8 @@ from .models import WineItem, SurveyResponse, SurveyQuestion, SurveyQuestionResp
 
 # Register your models here.
 class WineItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'bottle_image_thumbnail_html', 'label_type')
-    list_editable = ('label_type',)
+    list_display = ('name', 'bottle_image_thumbnail_html', 'label_type', 'price', 'description', 'wine_type', 'varietal')
+    list_editable = ('label_type','wine_type', 'varietal')
     readonly_fields = ['bottle_image_thumbnail_html']
 
 admin.site.register(WineItem, WineItemAdmin)
