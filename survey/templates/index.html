@@ -98,11 +98,410 @@
         Survey.StylesManager.applyTheme("bootstrap");
 
         var surveyJSON = {
-            "title": "Wine Buying Survey", "description": "This survey will ask you two pages of multiple choice questions on your buying habits, then ask you to pick bottles to \"buy\" for as long as you're interested.", "pages": [{ "name": "basic", "elements": [{ "type": "text", "name": "question1", "title": "Your e-mail:", "valueName": "email", "isRequired": true, "inputType": "email" }, { "type": "text", "name": "question2", "title": "Your age:", "valueName": "age" }, { "type": "radiogroup", "name": "wine_lover", "title": "How much of a \"wine lover\" would you consider yourself?", "valueName": "wine_love", "isRequired": true, "choices": [{ "value": "0", "text": "Don't care for it at all" }, { "value": "1", "text": "Will occasionally have a glass" }, { "value": "2", "text": "Will buy a bottle once in a while" }, { "value": "3", "text": "Love a good wine tasting" }, { "value": "4", "text": "My wine collection is a point of pride" }] }, { "type": "radiogroup", "name": "wine_knowledge", "title": "How much knowledge/experience would you say you have when it comes to wine?", "valueName": "wine_knowledge", "isRequired": true, "choices": [{ "value": "0", "text": "Literally none at all" }, { "value": "1", "text": "The basics - Cab, Chardonnay, and that's about it" }, { "value": "2", "text": "Reasonably informed - Know a couple varietals and regions" }, { "value": "3", "text": "An enthusiast - Know my specific taste, how to roughly pair, love learning more" }, { "value": "4", "text": "A connoisseur - friends come to me for wine knowledge" }] }, { "type": "text", "name": "glasses_per_month", "title": "How many glasses of wine would you say you drink in an average month?", "valueName": "glasses_per_month", "isRequired": true, "inputType": "number" }, { "type": "text", "name": "bottles_per_month", "title": "How many bottles of wine would you say you buy in an average month?", "valueName": "bottles_per_month", "isRequired": true }, { "type": "text", "name": "typical_price", "title": "If you had to guess, how much would you say you \"typically\" spend on a bottle of wine?", "description": "$", "valueName": "typical_bottle_price", "inputType": "number" }] }, { "name": "Wine Buying", "elements": [{ "type": "matrix", "name": "Where do you typically buy your wine?", "valueName": "buying_location", "columns": [{ "value": "0", "text": "Never" }, { "value": "1", "text": "Rarely" }, { "value": "2", "text": "Sometimes" }, { "value": "3", "text": "Typically" }, { "value": "4", "text": "Almost Always" }], "rows": [{ "value": "grocery", "text": "Grocery Store" }, { "value": "wine_shop", "text": "Wine Shop" }, { "value": "tasting_room", "text": "Tasting Room" }, { "value": "club_membership", "text": "Wine Club Membership" }, { "value": "online", "text": "Online" }] }, { "type": "matrix", "name": "wine_services", "title": "Would you consider buying wine from any of the following services?", "columns": [{ "value": "0", "text": "Haven't heard of" }, { "value": "1", "text": "Heard of, wouldn't consider" }, { "value": "2", "text": "Heard of, would consider" }, { "value": "3", "text": "Have tried but no longer use" }, { "value": "4", "text": "Am a customer" }], "rows": [{ "value": "winc", "text": "Winc" }, { "value": "nakewines", "text": "NakedWines" }, { "value": "vinebox", "text": "Vinebox" }, { "value": "nytwineclub", "text": "New York Times Wine Club" }, { "value": "blueapron", "text": "Blue Apron Wine" }, { "value": "firstleaf", "text": "First Leaf" }, { "value": "localshop", "text": "A local wine shop website (e.g. K&L)" }, { "value": "wineclub", "text": "A favorite winery's club membership or website" }] }, { "type": "matrix", "name": "format_likelihood", "title": "How likely would you be to buy the following formats?", "valueName": "format_likelihood", "columns": [{ "value": "0", "text": "Not at all likely" }, { "value": "1", "text": "Slightly likely" }, { "value": "2", "text": "Moderately likely" }, { "value": "3", "text": "Extremely likely" }, { "value": "4", "text": "Already do" }], "rows": [{ "value": "individual_bottles_winery", "text": "Individual bottles you select directly from a winery website" }, { "value": "individual_bottles_site", "text": "Individual bottles from a site that sells many different wines" }, { "value": "monthly_nice", "text": "$90 monthly subscription of 3 curated \"nice\" bottles of wine ($30/bottle)" }, { "value": "monthly_value", "text": "$45 monthly subscription of 3 curated \"high value\" bottles of wine ($15/bottle)" }, { "value": "monthly_glass", "text": "$90 monthly subscription of 9 curated wines by-the-glass ($10/glass)" }, { "value": "tasting", "text": "Tasting set of 6 mini-bottles for $10, that you can then choose to order full bottles of" }] }, { "type": "matrix", "name": "more_likely", "title": "Would any of the follow make you more likely to order wine online, and how much more likely?", "valueName": "more_likely", "columns": [{ "value": "0", "text": "Less likely" }, { "value": "1", "text": "No influence" }, { "value": "2", "text": "Slightly more likely" }, { "value": "3", "text": "Much more likely" }, { "value": "4", "text": "Sign me up" }], "rows": [{ "value": "taste_quiz", "text": "Taste profile quiz that recommends specific bottles just for you" }, { "value": "discount", "text": "40% discount on your first order" }, { "value": "shipping", "text": "Free shipping" }, { "value": "local_producers", "text": "Wine from small local producers with a story" }, { "value": "curated", "text": "Expert curated picks" }, { "value": "rare", "text": "Rare or exclusive wines" }, { "value": "glass", "text": "Wine in by-the-glass bottles" }, { "value": "cans", "text": "Wine in cans" }, { "value": "educational", "text": "Educational material that also helps you learn more about the wine you buy and get better at tasting" }] }] }], "completeText": "Next", "showCompletedPage": false, "showPageNumbers": true,
-            "showProgressBar": "both",
-            "progressBarType": "questions",
-            "completeText": "Next"
+  "title":"Wine Buying Survey",
+  "description":"This survey will ask you two pages of multiple choice questions on your buying habits, then ask you to pick bottles to \"buy\" for as long as you're interested.",
+  "pages":[
+    {
+      "name":"basic",
+      "elements":[
+        {
+          "type":"text",
+          "name":"question1",
+          "title":"Your e-mail:",
+          "valueName":"email",
+          "isRequired":true,
+          "inputType":"email"
+        },
+        {
+          "type":"text",
+          "name":"question2",
+          "title":"Your age:",
+          "valueName":"age"
+        },
+        {
+          "type":"radiogroup",
+          "name":"wine_lover",
+          "title":"How much of a \"wine lover\" would you consider yourself?",
+          "valueName":"wine_love",
+          "isRequired":true,
+          "choices":[
+            {
+              "value":"0",
+              "text":"Don't care for it at all"
+            },
+            {
+              "value":"1",
+              "text":"Will occasionally have a glass"
+            },
+            {
+              "value":"2",
+              "text":"Will buy a bottle once in a while"
+            },
+            {
+              "value":"3",
+              "text":"Love a good wine tasting"
+            },
+            {
+              "value":"4",
+              "text":"My wine collection is a point of pride"
+            }
+          ]
+        },
+        {
+          "type":"radiogroup",
+          "name":"wine_knowledge",
+          "title":"How much knowledge/experience would you say you have when it comes to wine?",
+          "valueName":"wine_knowledge",
+          "isRequired":true,
+          "choices":[
+            {
+              "value":"0",
+              "text":"Literally none at all"
+            },
+            {
+              "value":"1",
+              "text":"The basics - Cab, Chardonnay, and that's about it"
+            },
+            {
+              "value":"2",
+              "text":"Reasonably informed - Know a couple varietals and regions"
+            },
+            {
+              "value":"3",
+              "text":"An enthusiast - Know my specific taste, how to roughly pair, love learning more"
+            },
+            {
+              "value":"4",
+              "text":"A connoisseur - friends come to me for wine knowledge"
+            }
+          ]
+        },
+        {
+          "type":"text",
+          "name":"glasses_per_month",
+          "title":"How many glasses of wine would you say you drink in an average month?",
+          "valueName":"glasses_per_month",
+          "isRequired":true,
+          "inputType":"number"
+        },
+        {
+          "type":"text",
+          "name":"bottles_per_month",
+          "title":"How many bottles of wine would you say you buy in an average month?",
+          "valueName":"bottles_per_month",
+          "isRequired":true
+        },
+        {
+          "type":"text",
+          "name":"typical_price",
+          "title":"If you had to guess, how much would you say you \"typically\" spend on a bottle of wine?",
+          "description":"$",
+          "valueName":"typical_bottle_price",
+          "inputType":"number"
         }
+      ]
+    },
+    {
+      "name":"Wine Buying",
+      "elements":[
+        {
+          "type":"matrix",
+          "name":"Where do you typically buy your wine?",
+          "valueName":"buying_location",
+          "columns":[
+            {
+              "value":"0",
+              "text":"Never"
+            },
+            {
+              "value":"1",
+              "text":"Rarely"
+            },
+            {
+              "value":"2",
+              "text":"Sometimes"
+            },
+            {
+              "value":"3",
+              "text":"Typically"
+            },
+            {
+              "value":"4",
+              "text":"Almost Always"
+            }
+          ],
+          "rows":[
+            {
+              "value":"grocery",
+              "text":"Grocery Store"
+            },
+            {
+              "value":"wine_shop",
+              "text":"Wine Shop"
+            },
+            {
+              "value":"tasting_room",
+              "text":"Tasting Room"
+            },
+            {
+              "value":"club_membership",
+              "text":"Wine Club Membership"
+            },
+            {
+              "value":"online",
+              "text":"Online"
+            }
+          ]
+        },
+        {
+          "type":"matrix",
+          "name":"wine_services",
+          "title":"Would you consider buying wine from any of the following services?",
+          "columns":[
+            {
+              "value":"0",
+              "text":"Haven't heard of"
+            },
+            {
+              "value":"1",
+              "text":"Heard of, wouldn't consider"
+            },
+            {
+              "value":"2",
+              "text":"Heard of, would consider"
+            },
+            {
+              "value":"3",
+              "text":"Have tried but no longer use"
+            },
+            {
+              "value":"4",
+              "text":"Am a customer"
+            }
+          ],
+          "rows":[
+            {
+              "value":"winc",
+              "text":"Winc"
+            },
+            {
+              "value":"nakewines",
+              "text":"NakedWines"
+            },
+            {
+              "value":"vinebox",
+              "text":"Vinebox"
+            },
+            {
+              "value":"nytwineclub",
+              "text":"New York Times Wine Club"
+            },
+            {
+              "value":"blueapron",
+              "text":"Blue Apron Wine"
+            },
+            {
+              "value":"firstleaf",
+              "text":"First Leaf"
+            },
+            {
+              "value":"localshop",
+              "text":"A local wine shop website (e.g. K&L)"
+            },
+            {
+              "value":"wineclub",
+              "text":"A favorite winery's club membership or website"
+            }
+          ]
+        },
+        {
+          "type":"matrix",
+          "name":"learning_sources",
+          "title":"How likely would you be to use each of the following sources to learn about new wine brands?",
+          "valueName":"learning_sources",
+          "columns":[
+            {
+              "value":"0",
+              "text":"Not at all likely"
+            },
+            {
+              "value":"1",
+              "text":"Slightly likely"
+            },
+            {
+              "value":"2",
+              "text":"Moderately likely"
+            },
+            {
+              "value":"3",
+              "text":"Extremely likely"
+            },
+            {
+              "value":"4",
+              "text":"Already do"
+            }
+          ],
+          "rows":[
+            {
+              "value":"instagram_facebook",
+              "text":"Instagram or Facebook ads"
+            },
+            {
+              "value":"influencers",
+              "text":"Influencers I follow"
+            },
+            {
+              "value":"newsletters",
+              "text":"Wine newsletters or magazines (e.g. Wine Spectator)"
+            },
+            {
+              "value":"wine_clubs",
+              "text":"Curated wine clubs"
+            },
+            {
+              "value":"app",
+              "text":"Wine app (e.g. Vivino)"
+            },
+            {
+              "value":"browsing_aisles",
+              "text":"Browsing aisles"
+            },
+            {
+              "value": "browsing_online",
+              "text": "Browsing online wine stores"
+            }
+          ]
+        },
+        {
+          "type":"matrix",
+          "name":"format_likelihood",
+          "title":"How likely would you be to buy the following formats?",
+          "valueName":"format_likelihood",
+          "columns":[
+            {
+              "value":"0",
+              "text":"Not at all likely"
+            },
+            {
+              "value":"1",
+              "text":"Slightly likely"
+            },
+            {
+              "value":"2",
+              "text":"Moderately likely"
+            },
+            {
+              "value":"3",
+              "text":"Extremely likely"
+            },
+            {
+              "value":"4",
+              "text":"Already do"
+            }
+          ],
+          "rows":[
+            {
+              "value":"individual_bottles_winery",
+              "text":"Individual bottles you select directly from a winery website"
+            },
+            {
+              "value":"individual_bottles_site",
+              "text":"Individual bottles from a site that sells many different wines"
+            },
+            {
+              "value":"monthly_nice",
+              "text":"$90 monthly subscription of 3 curated \"nice\" bottles of wine ($30/bottle)"
+            },
+            {
+              "value":"monthly_value",
+              "text":"$45 monthly subscription of 3 curated \"high value\" bottles of wine ($15/bottle)"
+            },
+            {
+              "value":"monthly_glass",
+              "text":"$90 monthly subscription of 9 curated wines by-the-glass ($10/glass)"
+            },
+            {
+              "value":"tasting",
+              "text":"Tasting set of 6 mini-bottles for $10, that you can then choose to order full bottles of"
+            }
+          ]
+        },
+        {
+          "type":"matrix",
+          "name":"more_likely",
+          "title":"Would any of the follow make you more likely to order wine online, and how much more likely?",
+          "valueName":"more_likely",
+          "columns":[
+            {
+              "value":"0",
+              "text":"Less likely"
+            },
+            {
+              "value":"1",
+              "text":"No influence"
+            },
+            {
+              "value":"2",
+              "text":"Slightly more likely"
+            },
+            {
+              "value":"3",
+              "text":"Much more likely"
+            },
+            {
+              "value":"4",
+              "text":"Sign me up"
+            }
+          ],
+          "rows":[
+            {
+              "value":"taste_quiz",
+              "text":"Taste profile quiz that recommends specific bottles just for you"
+            },
+            {
+              "value":"discount",
+              "text":"40% discount on your first order"
+            },
+            {
+              "value":"shipping",
+              "text":"Free shipping"
+            },
+            {
+              "value":"local_producers",
+              "text":"Wine from small local producers with a story"
+            },
+            {
+              "value":"curated",
+              "text":"Expert curated picks"
+            },
+            {
+              "value":"rare",
+              "text":"Rare or exclusive wines"
+            },
+            {
+              "value":"glass",
+              "text":"Wine in by-the-glass bottles"
+            },
+            {
+              "value":"cans",
+              "text":"Wine in cans"
+            },
+            {
+              "value":"educational",
+              "text":"Educational material that also helps you learn more about the wine you buy and get better at tasting"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "completeText":"Next",
+  "showCompletedPage":false,
+  "showPageNumbers":true,
+  "showProgressBar":"both",
+  "progressBarType":"questions",
+  "completeText":"Next"
+}
 
         var email = null;
         var abData = {};
