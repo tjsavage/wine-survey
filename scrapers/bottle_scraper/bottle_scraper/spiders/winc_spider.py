@@ -7,7 +7,7 @@ from ..util import is_image_url_valid
 class WincSpider(scrapy.Spider):
     name = "winc"
     start_urls = [
-        'https://www.winc.com/api/search?index=winesearch-production-4&top=100'
+        'https://www.winc.com/api/search?index=winesearch-production-4&top=10'
     ]
     
     def parse(self, response):
