@@ -71,7 +71,7 @@ scrapy-djangoitem==1.1.1
 Send2Trash==1.5.0
 service-identity==18.1.0
 six==1.14.0
-sqlparse==0.3.1
+sqlparse==0.4.4
 terminado==0.8.3
 testpath==0.4.4
 toml==0.10.0
